@@ -24,10 +24,10 @@ function Home({now, nowCached}) {
           Timestamp from /api/time generated <code className={styles.code}>{router.asPath}</code> at {' '}
           <code className={styles.code}>{moment(now).format()} <span style={{fontSize: 'xx-small'}}>({moment(now).fromNow()} [{(Date.now() - now) / 1000} seconds])</span></code>.
         </p>
-        <p className={styles.description}>
+        {/* <p className={styles.description}>
           Timestamp from /api/time-with-cache generated <code className={styles.code}>{router.asPath}</code> at {' '}
           <code className={styles.code}>{moment(nowCached).format()} <span style={{fontSize: 'xx-small'}}>({moment(nowCached).fromNow()} [{(Date.now() - nowCached) / 1000} seconds])</span></code>.
-        </p>
+        </p> */}
 
 
         <div style={{textAlign: 'left', width: '100%'}}>
@@ -66,8 +66,8 @@ function Home({now, nowCached}) {
 export async function getStaticProps() {
   const res = await fetch('https://nextjs-time-api.vercel-support.app/api/time')
   const {now} = await res.json()
-  const resCached = await fetch('https://nextjs-time-api.vercel-support.app/api/time-with-cache')
-  const {now: nowCached} = await resCached.json()
+  // const resCached = await fetch('https://nextjs-time-api.vercel-support.app/api/time-with-cache')
+  // const {now: nowCached} = await resCached.json()
 
   return {
     props: {
