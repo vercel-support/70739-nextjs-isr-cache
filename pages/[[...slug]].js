@@ -67,7 +67,7 @@ export async function getStaticProps() {
   const res = await fetch('https://nextjs-time-api.vercel-support.app/api/time')
   const {now} = await res.json()
   const resCached = await fetch('https://nextjs-time-api.vercel-support.app/api/time-with-cache')
-  const {nowCached} = await resCached.json()
+  const {now: nowCached} = await resCached.json()
 
   return {
     props: {
@@ -76,8 +76,8 @@ export async function getStaticProps() {
     },
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
-    // - At most once every 600 seconds
-    revalidate: 600, // In seconds
+    // - At most once every 3600 seconds
+    revalidate: 3600, // In seconds
   }
 }
 
