@@ -66,8 +66,10 @@ function Home({now, nowCached}) {
 export async function getStaticProps() {
   const res = await fetch('https://nextjs-time-api.vercel-support.app/api/time')
   const {now} = await res.json()
+  console.log(`timestamp returned from https://nextjs-time-api.vercel-support.app/api/time: ${now}`)
   // const resCached = await fetch('https://nextjs-time-api.vercel-support.app/api/time-with-cache')
   // const {now: nowCached} = await resCached.json()
+  // console.log(`cached timestamp returned from https://nextjs-time-api.vercel-support.app/api/time-with-cache: ${nowCached}`)
 
   return {
     props: {
