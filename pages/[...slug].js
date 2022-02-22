@@ -26,7 +26,7 @@ function Home({now}) {
         </p>
 
         <div style={{textAlign: 'left', width: '100%'}}>
-          <a href="https://nextjs-time-api.vercel-support.app/api/time" target="_blank" style={{'textDecoration': 'underline'}}>Now API</a> Returned:
+          <a href="https://nextjs-time-api.vercel-support.app/api/time" target="_blank" style={{'textDecoration': 'underline'}}>Time API</a> Returned:
           <pre>
             {
               now
@@ -35,7 +35,7 @@ function Home({now}) {
         </div>
 
         <div style={{textAlign: 'left', width: '100%'}}>
-          <a href="https://nextjs-time-api.vercel-support.app/api/time" target="_blank" style={{'textDecoration': 'underline'}}>Now Cached API</a> Returned:
+          <a href="https://nextjs-time-api.vercel-support.app/api/time" target="_blank" style={{'textDecoration': 'underline'}}>Time Cached API</a> Returned:
           <pre>
             {
               nowCached
@@ -89,8 +89,8 @@ function Home({now}) {
 export async function getStaticProps() {
   const res = await fetch('/api/now')
   const {now} = await res.json()
-  const res = await fetch('/api/now-cached')
-  const {nowCached} = await res.json()
+  const resCached = await fetch('/api/now-cached')
+  const {nowCached} = await resCached.json()
 
   return {
     props: {
