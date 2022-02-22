@@ -3,11 +3,11 @@ import styles from '../styles/Home.module.css'
 import moment from 'moment'
 import { useRouter } from 'next/router'
 
-function Home({now, nowCached}) {
-  
+function Home({now, nowCached, slug}) {
   const router = useRouter()
-  const { slug } = router.query
-  console.log({router})
+  // const { slug } = router.query
+  
+  
   return (
     <div className={styles.container}>
       <Head>
@@ -63,10 +63,11 @@ function Home({now, nowCached}) {
   )
 }
 
-export async function getStaticProps() {
+export async function getStaticProps({params}) {
   const res = await fetch('https://nextjs-time-api.vercel-support.app/api/time')
   const {now} = await res.json()
-  console.log(`timestamp returned from https://nextjs-time-api.vercel-support.app/api/time: ${now}`)
+  const slug = params.slug ? params.slug.join('/') : 'index'
+  console.log(`${slug} - timestamp returned from https://nextjs-time-api.vercel-support.app/api/time: ${now}`)
   // const resCached = await fetch('https://nextjs-time-api.vercel-support.app/api/time-with-cache')
   // const {now: nowCached} = await resCached.json()
   // console.log(`cached timestamp returned from https://nextjs-time-api.vercel-support.app/api/time-with-cache: ${nowCached}`)
@@ -74,7 +75,8 @@ export async function getStaticProps() {
   return {
     props: {
       now,
-      nowCached
+      // nowCached,
+      slug
     },
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
